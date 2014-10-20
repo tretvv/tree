@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tree</title>
+	<link rel="stylesheet" href="css/style.css"/>
+	<script type="text/javascript" src="js/jquery/jquery-2.1.1.min.js"></script>
+</head>
+
+<body>
+<form method="post" action="test.php">
+	<div id="tree"></div>
+	<input id="button_submit" type="submit" value="Создать новую компанию">
+</form>
+
+<script type="text/javascript">
+	var geo = {
+		0: {
+			'title': 'Все Страны',
+			'structure': {
+				0: {
+					'title': 'Российская Федерация',
+					'structure': {
+						0: {
+							'title': 'Центральный федеральный округ',
+							'structure': {
+								0: {
+									'title': 'Белгородская обл.',
+									'structure': {
+										0: {
+											'title': 'Белгород',
+										},
+										1: {
+											'title': 'Новый Оскол',
+										},
+										2: {
+											'title': 'Ровеньки',
+										},
+									}
+								},
+								1: {
+									'title': 'Брянская обл.',
+									'structure': {
+										0: {
+											'title': 'Брянск',
+										},
+										1: {
+											'title': 'Клинцы',
+										},
+										2: {
+											'title': 'Карачев',
+										}
+									}
+								},
+								2: {
+									'title': 'Владимирская обл.',
+									'structure': {
+										0: {
+											'title': 'Владимир',
+										},
+										1: {
+											'title': 'Ковров',
+										},
+										2: {
+											'title': 'Юрьев-Польский',
+										}
+									}
+								},
+							}
+						},
+						1: {
+							'title': 'Северо-Западный федеральный округ',
+							'structure': {
+								0: {
+									'title': 'Республика Карелия',
+									'structure': {
+										0: {
+											'title': 'Костомукша',
+										},
+										1: {
+											'title': 'Медвежьегорск',
+										},
+										2: {
+											'title': 'Петрозаводск',
+										},
+									}
+								},
+								1: {
+									'title': 'Республика Коми',
+									'structure': {
+										0: {
+											'title': 'Воркута',
+										},
+										1: {
+											'title': 'Печора',
+										},
+										2: {
+											'title': 'Ухта',
+										}
+									}
+								},
+								2: {
+									'title': 'Архангельская обл.',
+									'structure': {
+										0: {
+											'title': 'Архангельск',
+										},
+										1: {
+											'title': 'Мирный',
+										},
+										2: {
+											'title': 'Северодвинск',
+										}
+									}
+								},
+							}
+						},
+						2: {
+							'title': 'Сибирский федеральный округ',
+							'structure': {
+								0: {
+									'title': 'Республика Алтай',
+									'structure': {
+										0: {
+											'title': 'Горно-Алтайск',
+										},
+										1: {
+											'title': 'Майма',
+										},
+										2: {
+											'title': 'Турочак',
+										},
+									}
+								},
+								1: {
+									'title': 'Алтайский край',
+									'structure': {
+										0: {
+											'title': 'Барнаул',
+										},
+										1: {
+											'title': 'Бийск',
+										},
+										2: {
+											'title': 'Яровое',
+										}
+									}
+								},
+								2: {
+									'title': 'Республика Бурятия',
+									'structure': {
+										0: {
+											'title': 'Гусиноозёрск',
+										},
+										1: {
+											'title': 'Северобайкальск',
+										},
+										2: {
+											'title': 'Улан-Удэ',
+										}
+									}
+								},
+							}
+						},
+					}
+				},
+				1: {
+					'title': 'Украина',
+					'structure': {
+						0: {
+							'title': 'Центральная Украина',
+							'structure': {
+								0: {
+									'title': 'Киевская обл.',
+									'structure': {
+										0: {
+											'title': 'Киев',
+										},
+										1: {
+											'title': 'Белая Церковь',
+										},
+										2: {
+											'title': 'Бровары',
+										},
+										3: {
+											'title': 'Борисполь',
+										}
+									}
+								},
+								1: {'title': 'Черкасская обл.',
+									'structure': {
+										0: {
+											'title': 'Ватутино',
+										},
+										1: {
+											'title': 'Канев',
+										},
+										2: {
+											'title': 'Черкассы',
+										},
+										3: {
+											'title': 'Уманьо',
+										}
+									}
+								},
+								2: {'title': 'Кировоградская обл.',
+									'structure': {
+										0: {
+											'title': 'Александрия',
+										},
+										1: {
+											'title': 'Знаменка',
+										},
+										2: {
+											'title': 'Канев',
+										},
+										3: {
+											'title': 'Светловодск',
+										}
+									}
+								}
+							}
+						},
+						1: {
+							'title': 'Восточная Украина',
+							'structure': {
+								0: {
+									'title': 'Донецкая обл.',
+									'structure': {
+										0: {
+											'title': 'Артемовск',
+										},
+										1: {
+											'title': 'Донецк',
+										},
+										2: {
+											'title': 'Константиновка',
+										},
+										3: {
+											'title': 'Краматорск',
+										}
+									}
+								},
+								1: {'title': 'Днепропетровска обл.',
+									'structure': {
+										0: {
+											'title': 'Днепропетровск',
+										},
+										1: {
+											'title': 'Кривой Рог',
+										},
+										2: {
+											'title': 'Павлоград',
+										},
+										3: {
+											'title': 'Терновка',
+										}
+									}
+								},
+								2: {'title': 'Луганская обл.',
+									'structure': {
+										0: {
+											'title': 'Артемовск',
+										},
+										1: {
+											'title': 'Луганск',
+										},
+										2: {
+											'title': 'Северодонецк',
+										},
+										3: {
+											'title': 'Стаханов',
+										}
+									}
+								},
+							}
+						},
+						2: {
+							'title': 'Западная Украина',
+							'structure': {
+								0: {
+									'title': 'Львовская обл.',
+									'structure': {
+										0: {
+											'title': 'Борислав',
+										},
+										1: {
+											'title': 'Дрогобыч',
+										},
+										2: {
+											'title': 'Самбор',
+										},
+										3: {
+											'title': 'Червоноград',
+										}
+									}
+								},
+								1: {
+									'title': 'Черновицкая обл.',
+									'structure': {
+										0: {
+											'title': 'Заставна',
+										},
+										1: {
+											'title': 'Красноильск',
+										},
+										2: {
+											'title': 'Новоднестровск',
+										},
+										3: {
+											'title': 'Черновцы',
+										}
+									}
+								},
+								2: {'title': 'Хмельницкая обл.',
+									'structure': {
+										0: {
+											'title': 'Дунаевцы',
+										},
+										1: {
+											'title': 'Каменец-Подольский',
+										},
+										2: {
+											'title': 'Красилов',
+										},
+										3: {
+											'title': 'Славута',
+										}
+									}
+								}
+
+							}
+						}
+					}
+				},
+				2: {'title': 'Беларусь',
+					'structure': {
+						0: {
+							'title': 'Брестская обл.',
+							'structure': {
+								0: {
+									'title': 'Брест',
+								},
+								1: {
+									'title': 'Барановичи',
+								},
+								2: {
+									'title': 'Пинск',
+								},
+							}
+						},
+						1: {
+							'title': 'Витебская обл.',
+							'structure': {
+								0: {
+									'title': 'Витебск',
+								},
+								1: {
+									'title': 'Глубокое',
+								},
+								2: {
+									'title': 'Шумилино',
+								},
+							}
+						},
+						2: {
+							'title': 'Гомельская обл.',
+							'structure': {
+								0: {
+									'title': 'Гомель',
+								},
+								1: {
+									'title': 'Мозырь',
+								},
+								2: {
+									'title': 'Светлогорск',
+								},
+							}
+						}
+					}
+
+				},
+			}
+		}
+	};
+
+	var treeHtml = '';
+	var level = 0;
+	function treeElement(arr, nam) {
+		treeHtml += ('<ul>');
+		level++;
+		for (i in arr) {
+			var name = nam + '_' + i;
+			var car = typeof(arr[i]['structure']) != 'undefined' ? '<span class="show_tree closed">&nbsp</span>' : '';
+			treeHtml += '<li class="level'+ level + '">' + car + '<label><input name="' + name + '" type="checkbox" value="1"><span class="my_checkbox"></span></label><span class="title">' + arr[i]['title'] + '</span>';
+			if (typeof(arr[i]['structure']) != 'undefined') {
+				treeElement(arr[i]['structure'], name);//рекурсия!!!
+			}
+			treeHtml += '</li>';
+		}
+		treeHtml += '</ul>';
+		level--;
+	}
+
+	treeElement(geo, 0);
+	$('#tree').html(treeHtml);
+
+	$(document).ready(function() {
+		$(document).on('click', '.show_tree', function() {
+			$(this).toggleClass('closed').siblings('ul').toggle();
+		});
+
+		$(document).on('click', 'span.title', function() {
+			$(this).siblings('span.show_tree').click();
+		});
+
+		$(document).on('click', '.my_checkbox', function() {
+			if($(this).siblings('input').attr('checked') == 'checked') {
+				uncheck($(this));
+				$(this).parent().siblings('ul').find('span.my_checkbox').each(function() {
+					uncheck($(this));
+				});
+				$(this).parents('li').each(function() {
+					uncheck($(this).children('label').children('span.my_checkbox'));
+				});
+			} else {
+				check($(this));
+				$(this).parent().siblings('ul').find('span.my_checkbox').each(function() {
+					check($(this));
+				});
+
+				var parentUl = $(this).parent().parent().parent();
+				if(parentUl.find('.my_checkbox').length == parentUl.find('.my_checked').length) {
+					parentUl.siblings('label').find('span.my_checkbox').click();//рекурсия!!!
+				}
+			}
+		});
+
+		function check(obj) {
+			obj.addClass('my_checked').siblings('input').attr('checked', true);
+		}
+
+		function uncheck(obj) {
+			obj.removeClass('my_checked').siblings('input').attr('checked', false);
+		}
+	});
+</script>
+
+
+</body>
+</html>
